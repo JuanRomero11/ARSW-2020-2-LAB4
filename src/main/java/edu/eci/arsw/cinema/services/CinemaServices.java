@@ -41,6 +41,7 @@ public class CinemaServices {
     }
     
     public List<Cinema> getAllCinemas(){
+        
         return cps.getCinemas();
     }
     
@@ -55,6 +56,7 @@ public class CinemaServices {
         if(c == null){
             throw new CinemaException("Cinema no encontrado");
         }
+        System.out.println("UN "+c+" CINEMA");
         return c;
     }
     
@@ -63,11 +65,11 @@ public class CinemaServices {
         // throw new UnsupportedOperationException("Not supported yet."); 
         cps.buyTicket(row, col, cinema, date, movieName);
     }
-    
-    public List<CinemaFunction> getFunctionsbyCinemaAndDate(String cinema, String date) {
-       // throw new UnsupportedOperationException("Not supported yet."); 
+    public List<CinemaFunction> getFunctionsbyCinemaAndDate(String cinema, String date){
         return cps.getFunctionsbyCinemaAndDate(cinema, date);
     }
+
+
     public List<Movie> filter(Cinema c, String filtro, String date){
         return filter.filter(c, filtro, date);
     }

@@ -5,6 +5,7 @@
  */
 package edu.eci.arsw.cinema.persistence;
 
+import edu.eci.arsw.cinema.persistence.CinemaException;
 import edu.eci.arsw.cinema.model.Cinema;
 import edu.eci.arsw.cinema.model.CinemaFunction;
 import java.util.List;
@@ -53,4 +54,6 @@ public interface CinemaPersitence {
     public Cinema getCinema(String name) throws CinemaPersistenceException;
     public List<Cinema> getCinemas();
     public void addCinema(Cinema c);
+
+    
 }

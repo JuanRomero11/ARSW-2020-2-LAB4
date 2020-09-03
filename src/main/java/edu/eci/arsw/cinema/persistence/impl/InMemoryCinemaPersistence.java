@@ -29,14 +29,32 @@ public class InMemoryCinemaPersistence implements CinemaPersitence {
 
     public InMemoryCinemaPersistence() {
         //load stub data
-        String functionDate = "2018-12-18 15:30";
+        String functionDate = "2018-12-18";
         List<CinemaFunction> functions = new ArrayList<>();
-        CinemaFunction funct1 = new CinemaFunction(new Movie("SuperHeroes Movie", "Action"), functionDate);
-        CinemaFunction funct2 = new CinemaFunction(new Movie("The Night", "Horror"), functionDate);
+        CinemaFunction funct1 = new CinemaFunction(new Movie("SuperHeroes Movie", "Action"), "2018-12-18 15:30");
+        CinemaFunction funct2 = new CinemaFunction(new Movie("The Night", "Horror"), "2018-12-18 15:30");
         functions.add(funct1);
         functions.add(funct2);
         Cinema c = new Cinema("cinemaX", functions);
         cinemas.put("cinemaX", c);
+        
+        String functionDate2 = "2018-12-18";
+        List<CinemaFunction> functions2 = new ArrayList<>();
+        CinemaFunction funct12 = new CinemaFunction(new Movie("La vengaza de Danielo", "Action"), "2018-12-18 15:30");
+        CinemaFunction funct22 = new CinemaFunction(new Movie("La vengaza de Karón", "Horror"), "2018-12-18 15:30");
+        functions2.add(funct12);
+        functions2.add(funct22);
+        Cinema c2 = new Cinema("CineColombia", functions2);
+        cinemas.put("CineColombia", c2);
+        
+        String functionDate3 = "2018-12-18";
+        List<CinemaFunction> functions3 = new ArrayList<>();
+        CinemaFunction funct13= new CinemaFunction(new Movie("El entierro de Andres", "Action"), "2018-12-18 15:30");
+        CinemaFunction funct23 = new CinemaFunction(new Movie("El entierro de Juan", "Horror"), "2018-12-18 15:30");
+        functions3.add(funct13);
+        functions3.add(funct23);
+        Cinema c3 = new Cinema("Procinal", functions3);
+        cinemas.put("Procinal", c3);
     }
 
     @Override
@@ -90,6 +108,8 @@ public class InMemoryCinemaPersistence implements CinemaPersitence {
     public void addCinema(Cinema c) {
         cinemas.put(c.getName(),c);
     }
+
+   
     
 
 }
