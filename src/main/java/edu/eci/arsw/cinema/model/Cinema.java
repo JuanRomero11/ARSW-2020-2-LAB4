@@ -23,7 +23,9 @@ public class Cinema {
         
         this.functions=functions;
     }
-
+    public void addFunction(CinemaFunction function){
+        functions.add(function);
+    }
     public String getName() {
         return name;
     }

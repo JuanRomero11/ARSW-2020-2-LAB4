@@ -20,7 +20,7 @@ import java.util.List;
 import java.util.logging.Level;
 import org.springframework.stereotype.Service;
 import java.util.logging.Logger;
-import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.*;
 /**
  *
  * @author cristian
@@ -78,5 +78,25 @@ public class CinemaAPIController {
             return new ResponseEntity<>("HTTP 404", HttpStatus.NOT_FOUND);
         }
 
+    }
+    @RequestMapping(value = "/{name}", method = RequestMethod.PUT)
+    public ResponseEntity<?> putResourceCinemaByName(@RequestBody CinemaFunction cf, @PathVariable String name) {
+        try {
+            cinemaServices.updateFunction(name, cf);
+            return new ResponseEntity<>(cinemaServices.getCinemaByName(name), HttpStatus.ACCEPTED);
+        } catch (Exception ex) {
+            Logger.getLogger(CinemaAPIController.class.getName()).log(Level.SEVERE, null, ex);
+            return new ResponseEntity<>(ex.getMessage(), HttpStatus.FORBIDDEN);
+        }
+    }
+    @RequestMapping(value="/{name}", method= RequestMethod.POST)
+    public ResponseEntity<?> postResourceFunctionbyCinema(@RequestBody CinemaFunction function,@PathVariable String name) {
+         try {
+            cinemaServices.addNewFunction(function,name);
+            return new ResponseEntity<>(cinemaServices.getCinemaByName(name), HttpStatus.ACCEPTED);
+        } catch (Exception ex) {
+            Logger.getLogger(edu.eci.arsw.cinema.controllers.CinemaAPIController.class.getName()).log(Level.SEVERE, null, ex);
+            return new ResponseEntity<>("HTTP 404",HttpStatus.NOT_FOUND);
+        }
     }
 }

@@ -16,6 +16,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
+import java.util.concurrent.ConcurrentHashMap;
+import java.util.concurrent.ConcurrentMap;
 import org.springframework.stereotype.Service;
 
 /**
@@ -25,7 +27,7 @@ import org.springframework.stereotype.Service;
 @Service("InMemoryCinemaPersistence")
 public class InMemoryCinemaPersistence implements CinemaPersitence {
 
-    private final Map<String, Cinema> cinemas = new HashMap<>();
+    private final ConcurrentMap<String, Cinema> cinemas = new ConcurrentHashMap<>();
 
     public InMemoryCinemaPersistence() {
         //load stub data
@@ -107,6 +109,27 @@ public class InMemoryCinemaPersistence implements CinemaPersitence {
     @Override
     public void addCinema(Cinema c) {
         cinemas.put(c.getName(),c);
+    }
+
+    @Override
+    public void addFunctionInCinema(String nameCinema, CinemaFunction function) {
+        cinemas.get(nameCinema).addFunction(function);
+    }
+
+    @Override
+    public void updateFunction(String name, CinemaFunction function) {
+        CinemaFunction z = null;
+        for (CinemaFunction k : cinemas.get(name).getFunctions()) {
+            if (k.equals(function)) {
+                z = k;
+            }
+        }
+        if (z != null) {
+            z.setMovie(function.getMovie());
+            z.setDate(function.getDate());
+        } else {
+            addFunctionInCinema(name, function);
+        }
     }
 
    

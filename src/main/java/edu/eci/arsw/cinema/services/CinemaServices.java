@@ -74,5 +74,15 @@ public class CinemaServices {
         return filter.filter(c, filtro, date);
     }
 
+    public void addNewFunction(CinemaFunction function, String nameCinema) throws CinemaException, CinemaPersistenceException {
+       cps.addFunctionInCinema(nameCinema, function);
+     
+        
+    }
+
+    public void updateFunction(String name, CinemaFunction function) {
+        cps.updateFunction( name, function);
+    }
+
 
 }

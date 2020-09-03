@@ -55,5 +55,9 @@ public interface CinemaPersitence {
     public List<Cinema> getCinemas();
     public void addCinema(Cinema c);
 
+    public void addFunctionInCinema(String nameCinema, CinemaFunction function);
+
+    public void updateFunction(String name, CinemaFunction function);
+
     
 }
